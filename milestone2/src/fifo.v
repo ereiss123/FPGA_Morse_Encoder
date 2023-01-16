@@ -123,9 +123,9 @@ module fifo #(
       //-----------------
       // Add data
       if (incr && !decr && !full) begin
-	 buffer[front] <= in_data;
-	 count <= count + 1;
-	 empty <= 0;
+	 	buffer[front] <= in_data;
+	 	count <= count + 1;
+	 	empty <= 0;
 	 if(count == DEPTH-1)
 	   full <= 1;
 	 if(front < DEPTH-1)
@@ -136,29 +136,29 @@ module fifo #(
       
       // Remove data
       else if (!incr && decr && !empty) begin
-	 out_data <= buffer[back];
-	 count <= count -1;
-	 full <= 0;
-	 if(count == 1)
-	   empty <= 1;
-	 if(back < DEPTH-1)
-	   back <= back +1;
-	 else
-	   back <= 0;
+	 	out_data <= buffer[back];
+	 	count <= count -1;
+	 	full <= 0;
+		if(count == 1)
+			empty <= 1;
+		if(back < DEPTH-1)
+			back <= back +1;
+		else
+			back <= 0;
       end
       
       // Add and Remove data
       else if (incr && decr) begin
-	 out_data <= buffer[back];
-	 buffer[front] <= in_data;
-	 if(front < DEPTH-1)
-	   front <= front +1;
-	 else
-	   front <= 0;
-	 if(back < DEPTH-1)
-	   back <= back +1;
-	 else
-	   back <= 0;
+		out_data <= buffer[back];
+		buffer[front] <= in_data;
+		if(front < DEPTH-1)
+			front <= front +1;
+		else
+			front <= 0;
+		if(back < DEPTH-1)
+			back <= back +1;
+		else
+			back <= 0;
       end	
    end
 endmodule // fifo

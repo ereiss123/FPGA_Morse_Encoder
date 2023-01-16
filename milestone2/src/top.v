@@ -9,9 +9,9 @@ module milestone_top(
 		     );
    wire 			       rst_l;
    wire 			       ack;
-   wire [7:0] 			       d_in;
-   wire [15:0] 			       d_out;
-   wire [15:0] 			       morse_out;
+   wire [7:0] 			 d_in;
+   wire [15:0] 	    d_out;
+   wire [15:0] 	    morse_out;
    wire 			       empty;
    wire 			       full;
    wire 			       send_db;
@@ -47,15 +47,6 @@ module milestone_top(
        .tx_done(tx_done)
        );
    
-  /* mod_debouncer 
-     db_ack(
-	    .clk(clk),
-	    .rst_n(rst_l),
-	    .btn(send),
-	    .done(done),
-	    .btn_db(send_db)
-	    );
-*/
      debouncer 
      db_send(
 	    .clk(clk),
@@ -80,13 +71,10 @@ module milestone_top(
 
    always @(posedge clk) begin
       if(send_db)begin
-	 led <= morse_out;
-	// done <= 1;
+	      led <= morse_out;
       end
-      
       else begin
-	 led <= led;
-	// done <= 0;
+	      led <= led;
       end
    end // always @ (posedge clk)
    
