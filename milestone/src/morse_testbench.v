@@ -35,22 +35,14 @@ module morse_testbench();
       clk_count <= clk_count+1;
 
       addr <= addr + 1;
-/*
-      if(addr == 97)begin
-	 if(d_out == morse)
-	   $write("Correct d_out: %x  morse: %x",d_out,morse);
-	 else
-	   $write("Wrong d_out: %x  morse: %x",d_out,morse);
-      end
-*/    
       if(d_out != 0) begin  
-	 $write("ascii:%c %b %d\tmorse: %b  %x  %d \n",addr, addr,addr,d_out,d_out,d_out);
-	 $fwrite(fid,"ascii:%c %b %d\tmorse: %b  %x  %d \n",addr, addr,addr,d_out,d_out,d_out);
+	      $write("ascii:%c %b %d\tmorse: %b  %x  %d \n",addr, addr,addr,d_out,d_out,d_out);
+	      $fwrite(fid,"ascii:%c %b %d\tmorse: %b  %x  %d \n",addr, addr,addr,d_out,d_out,d_out);
       end
       
       if(clk_count == 255) begin
-	 $fclose(fid);
-	 $finish;
+	      $fclose(fid);
+	      $finish;
       end
    end
    
